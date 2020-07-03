@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        <!-- 注意这类插值的形式被改变 -->
+        ${ num }
+        <p><button @click='add'>add</button></p>
+    </div>
+
+    <!-- mixins 用于不污染之前已经写好的实例构造器，在最后补充新功能 -->
+    <script type="text/javascript">
+        
+        // 顺序为原生方法=>extends=>原生updated
+
+        var extendsObj={
+            updated:function(){
+                console.log("extends");
+            },
+            // 在extendsObj中也加入methods
+            methods:{
+                // 如果方法一样，则不执行extends的只执行原生的method
+                add:function(){
+                    this.num++;
+                    console.log('extends methods');
+                }
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                    console.log('原生方法');
+                }
+            },
+            updated:function(){
+                console.log('原生updated');
+            },
+            // 扩展只能有一个对象
+            extends:extendsObj,
+            delimiters:['${','}']   // 可以在这里改变插值的形式
+        })
+    </script>
+
+    
+
+</body>
+</html>

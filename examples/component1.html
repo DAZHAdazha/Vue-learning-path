@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        <!-- 组件即html中自定义的标签,命名全大写貌似会报错 -->
+        <dazha>
+
+        </dazha>
+        
+    </div>
+
+    <div id='app2'>
+        <dazha>
+
+        </dazha>
+    </div>
+    <!-- 即使为全局，在构造器外部也没有效果 -->
+    <dazha></dazha>
+
+    <div id='local'>
+        <xiaozha></xiaozha>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.component('dazha',{
+            template:`<div style="color:red">global component</div>`
+        })
+        var app = new Vue({
+            el: '#app'
+        })
+        var app2 = new Vue({
+            el: '#app2'
+        })
+        var local = new Vue({
+            el: '#local',
+            components:{
+                // 注意此处为字符串
+                "xiaozha":{
+                    template:`<div style="color:green">local component</div>`
+
+                }
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>

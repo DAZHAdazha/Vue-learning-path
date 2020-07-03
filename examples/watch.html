@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        <p>温度：{{ temperature }}</p>
+        <p>建议：{{ clothes }}</p>
+        <p>
+            <button @click='add'>add</button>
+            <button @click='decrease'>decrease</button>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        var dressing = ['shirts','jacket','feather dress']
+        var app = new Vue({
+            el: '#app',
+            data:{
+                temperature:15,
+                clothes:'jacket'
+            },
+            methods:{
+                add:function(){
+                    this.temperature += 5;
+                },
+                decrease:function(){
+                    this.temperature -= 5;
+                }
+            },
+            watch:{
+                // 以前的值和新值
+                temperature:function(newVal,oldVal){
+                    if(newVal>=26){
+                        this.clothes=dressing[0]
+                    }
+                    else if(newVal<26 && newVal>0){
+                        this.clothes=dressing[1]
+                    }
+                    else{
+                        this.clothes=dressing[2]
+                    }
+                }
+            }
+        })
+        // 也可也不写到构造器中
+        // app.$watch('temperature',function(newVal,oldVal){
+        //     if(newVal>=26){
+        //                 this.clothes=dressing[0]
+        //             }
+        //             else if(newVal<26 && newVal>0){
+        //                 this.clothes=dressing[1]
+        //             }
+        //             else{
+        //                 this.clothes=dressing[2]
+        //             }
+        // })
+
+    </script>
+
+    
+
+</body>
+</html>

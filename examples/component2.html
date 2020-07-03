@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    
+    <div id='local'>
+        <!-- 注意from-when中的连词在{{}}以及props中应当替换为fromWhen的写法 -->
+        <xiaozha from-when='yesterday' v-bind:here='message'></xiaozha>
+    </div>
+
+
+    <script type="text/javascript">
+        var local = new Vue({
+            el: '#local',
+            data:{
+                message:'China' //应用props并绑定message
+            },
+            components:{
+                // 注意此处为字符串
+                "xiaozha":{
+                    // 使用插值定义props
+                    // 注意此处的fromWhen替换
+                    template:`<div style="color:green">xiaozha from {{ here }},form {{ fromWhen }}</div>`,
+                    // 注意props中选项为数组
+                    props:['here','fromWhen'] //注意此处的fromWhen替换
+                }
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>

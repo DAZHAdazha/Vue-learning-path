@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>vue-extend 扩展实例构造器</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+
+  <div id="author"></div>
+
+<script type='text/javascript'>
+  var authorURL = Vue.extend({
+    // 标签需要绑定
+    template:"<p><a :href='authorURL'>{{ authorName }}</a></p>",
+    // 注意此处data需要用function return值
+    data:function(){
+      return{
+        // 将这里的值映射到模板里面
+          authorName:'DAHZA',
+          authorURL:'http://www.baidu.com'
+      }
+    }
+  });
+
+  // 构造器定义后需要加载才能运行 $mount: 将实例化的vue挂载到指定dom元素中
+  new authorURL().$mount("#author");
+
+
+</script>
+</body>
+</html>

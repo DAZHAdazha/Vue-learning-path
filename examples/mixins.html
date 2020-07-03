@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        {{ num }}
+        <p><button @click='add'>add</button></p>
+    </div>
+
+    <!-- mixins 用于不污染之前已经写好的实例构造器，在最后补充新功能 -->
+    <script type="text/javascript">
+        var addConsole = {
+            // updated为Vue生命周期，在构造器里也有
+            updated:function(){
+                console.log(this.num)
+            }
+        };
+
+        // 全局API混入，注意此处是mixin,顺序为全局=>mixins=>原生
+        Vue.mixin({
+            updated:function(){
+                console.log('全局');
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                }
+            },
+            // Vue都是mixin先执行，原生的后执行
+            updated:function(){
+                console.log('原生');
+            },
+            // 此处用数组定义mixins
+            mixins:[addConsole]
+        })
+    </script>
+
+    
+
+</body>
+</html>

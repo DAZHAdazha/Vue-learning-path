@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>其他v指令</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>{{ message }}</p>
+  <!-- v-pre即不进行vue渲染,如就想输出{{ message }}这个字符串 -->
+  <p v-pre>{{ message }}</p> 
+  <p v-cloak>等全部渲染完之后，cloak的内容才会显示</p>
+  <div>
+    <input type="text" v-model='message'>
+  </div>
+  <!-- v-once只进行一次渲染 -->
+  <p v-once>{{ message }}</p>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'haaa'
+  }
+})
+</script>
+</body>
+</html>

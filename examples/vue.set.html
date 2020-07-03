@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        {{ count }}
+        <ul>
+            <li v-for='item in arr'>{{ item }}</li>
+        </ul>
+        
+    </div>
+    <p>
+                <button onclick='set()'>set</button>
+            </p>
+    <p>
+                <button onclick='add()'>add</button>
+            </p>
+    <p>
+                <button onclick='change()'>change</button>
+            </p>
+    <script type="text/javascript">
+        function set(){
+            Vue.set(outData,'count',2);
+        }
+        function add(){
+            // app.count++; // 两种形式
+            outData.count++;
+        }
+        function change(){
+            // 这样会失效，Vue无法监听到数组的index，而应当用set来做
+            app.arr[1] = 'ddd';
+            Vue.set(app.arr,1,'ee');
+        }
+        var outData = {
+            count:1,
+            goods:'book',
+            arr:['aaa','bbb','ccc']
+        }
+        var app = new Vue({
+            el: '#app',
+            data:outData,
+            method:{
+
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>

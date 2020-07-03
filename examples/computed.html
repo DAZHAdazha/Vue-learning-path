@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        {{ newPrice }}
+        <ul>
+            <li v-for='item in reverseNews'>{{ item.title }} - {{ item.date }}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var newList = [
+            {title:'aaaaaaaaa',date:'2020/6/28'},
+            {title:'bbbbbbbbb',date:'2020/6/29'},
+            {title:'ccccccccc',date:'2020/6/30'},
+            {title:'ddddddddd',date:'2020/7/1'},
+        ]
+        var app = new Vue({
+            el: '#app',
+            data:{
+                price:100,
+                newList:newList
+            },
+            methods:{
+
+            },
+            computed:{
+                // 注意这里需要定义新的值
+                newPrice:function(){
+                    return '￥' + this.price + '元'
+                },
+                reverseNews:function(){
+                    return this.newList.reverse()
+                }
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>

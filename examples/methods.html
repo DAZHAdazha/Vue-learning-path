@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        {{ a }}
+        <button @click='add(2,$event)'>add</button>
+        <p>
+            <!-- 此处 .native是使用构造器methods中原始方法来调用 -->
+            <btn @click.native='add(4,$event)'></btn>
+        </p>
+    </div>
+    <!-- 此处$evnet未定义 -->
+    <button onclick="app.add(5)">外部add</button>
+
+
+    <script type="text/javascript">
+        var btn = {
+            template:`
+                <button>组件add</button>
+            `
+        }
+        var app = new Vue({
+            el: '#app',
+            data:{
+                a:1
+            },
+            components:{
+                'btn':btn
+            },
+            methods:{
+                add:function(num,event){
+                    // 点击事件等参数
+                    console.log(event);
+                    if(num!='')
+                        this.a += num;
+                    else
+                        this.a++;
+                }
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>

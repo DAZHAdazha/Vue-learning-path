@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    
+
+    <div id='local'>
+        <xiaozha></xiaozha>
+    </div>
+
+
+    <script type="text/javascript">
+    // 注意dazha组件应当放当前面,子组件先渲染
+        var dazha = {
+            template:`<div style="color:red">child component</div>`
+        }
+        var xiaozha = {
+            template:`
+            <div>
+            <p>parent component</p>
+            <dazha></dazha>
+            </div>
+            `,
+            components:{
+                "dazha":dazha
+            }
+        }
+        
+        var local = new Vue({
+            el: '#local',
+            components:{
+                // 第一个为引用标签的所以为字符串,第二个值是上面的变量
+                'xiaozha':xiaozha
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    
+    <header>
+
+    </header>
+
+    <script type="text/javascript">
+        var header_a = Vue.extend({
+            template:`
+                <p>{{ message }} -{{ a }}</p>
+            `,
+            data:function(){
+                return{
+                    message:'this is header'
+                }
+            },
+            // 注意为表格形式
+            props:['a']
+        })
+        // 注意传入对象形式参数
+        new header_a({propsData:{a:15}}).$mount('header');
+    </script>
+
+    
+
+</body>
+</html>
