@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+    
+    <h1>Hello world</h1>
+    <hr>
+    <div id="app">
+        <dazha>
+            <!-- 用slot 传值 -->
+            <span slot='url'>{{ dazhaData.url }}</span>
+            <span slot='name'>{{ dazhaData.name }}</span>
+            <span slot='age'>{{ dazhaData.age }}</span>
+        </dazha>
+    </div>
+
+    <template id='tep'>
+        <div>
+            <!-- 用slot标签接受值，注意成对出现 -->
+            <p>url：<slot name='url'></slot></p>
+            <p>name：<slot name='name'></slot></p>
+            <p>age：<slot name='age'></slot></p>
+        </div>
+    </template>
+
+
+
+    <script type="text/javascript">
+        var dazha = {
+            template:'#tep'
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data:{
+                dazhaData:{
+                    url:'www.baidu.com',
+                    name:'DAZHA',
+                    age:20
+                }
+            },
+            components:{
+                "dazha":dazha
+            }
+        })
+    </script>
+
+    
+
+</body>
+</html>
