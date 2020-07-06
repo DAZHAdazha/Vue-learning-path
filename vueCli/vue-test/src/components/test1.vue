@@ -14,10 +14,10 @@
 
 <script>
 export default {
-  name: 'dazha',
+  name: 'test1',
   data(){
       return{
-          msg:'dazha is here'
+          msg:'test1 is here'
       }
   }
 }

@@ -3,7 +3,8 @@
   <!-- 单个div父容器 -->
     <div>
         <h1>
-            {{ msg }}
+            <!-- 在此处接受参数 -->
+            {{ msg }} - {{ $route.params.username }} - {{ $route.params.id }}
 
             <router-view></router-view>
 
@@ -14,10 +15,10 @@
 
 <script>
 export default {
-  name: 'dazha',
+  name: 'test2',
   data(){
       return{
-          msg:'dazha is here'
+          msg:'test2 is here'
       }
   }
 }

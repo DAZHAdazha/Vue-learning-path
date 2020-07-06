@@ -4,6 +4,11 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 // 引入新的页面
 import dazha from '../components/dazha.vue'
+import test1 from '../components/test1.vue'
+import test2 from '../components/test2.vue'
+import left from '../components/left.vue'
+import right from '../components/right.vue'
+
 
 
 // 全局使用router组件
@@ -14,7 +19,13 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    // 注意有多个时，component需要加s!!!
+    components: {
+      // 单个页面配置多个router-view
+      default:Home,
+      left:left,
+      right:right,
+    }
   },
   {
     path: '/about',
@@ -27,8 +38,16 @@ Vue.use(VueRouter)
   // 配置路由页面
   {
     path:'/dazha',
-    name:'dazha',
-    component:dazha
+    // 有子路由的情况下这里的name没有作用，需要在children里面设置
+    name:'DAZHA',
+    component:dazha,
+    // 在此处添加子路由，用数组对象形式配置
+    children:[
+      {path:'/',name:'dazha/DAZHA',component:dazha},
+      // 注意这里不要加'/'!!!
+      {path:'test1',name:'test1',component:test1},
+      {path:'test2',name:'test2',component:test2}
+    ]
   }
 ]
 
