@@ -1,6 +1,7 @@
 <template>
 <div>
     <h2>{{ msg }}</h2>
+    <p>{{ $route.params.newsId }} - {{ $route.params.newsTitle }}</p>
 </div>
     
 </template>
@@ -9,7 +10,7 @@
 export default {
     data(){
         return{
-            msg:'right'
+            msg:'params page'
         }
     }
 }

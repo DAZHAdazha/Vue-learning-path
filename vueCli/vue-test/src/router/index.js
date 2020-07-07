@@ -8,6 +8,8 @@ import test1 from '../components/test1.vue'
 import test2 from '../components/test2.vue'
 import left from '../components/left.vue'
 import right from '../components/right.vue'
+import params from '../components/params.vue'
+import Error from '../components/Error.vue'
 
 
 
@@ -48,11 +50,45 @@ Vue.use(VueRouter)
       {path:'test1',name:'test1',component:test1},
       {path:'test2',name:'test2',component:test2}
     ]
+  },
+  {
+    // 用url传递参数,需要用:进行绑定,()内表示正则，如(\\d+)限制其为数字
+    path:'/params/:newsId(\\d+)/:newsTitle',
+    component:params,
+    // index文件中配置钩子函数,要使用钩子函数，也可以在模板中使用（见test1）
+    beforeEnter:(to,from,next)=>{
+      console.log('To: ');
+      console.log(to); // 跳转后的页面
+      console.log('From: ');
+      console.log(from); // 跳转前的页面
+      next(); // 如果不写next则不会跳转，相当于在此处拦截
+      // next(false); // next第二种用法，用false or true值
+      // next({path:'/'}) // next第三种用法，可以跳转
+    }
+  },
+  {
+    // 重定向，多个路由转到相同路径
+    path:'/goHome',
+    redirect:'/',
+    // 使用别名,两者的区别:重定向会改变路径而别名则不会
+    alias:'/letsGoHomeBaby'
+  },
+  {
+    // 路径传递参数的重定向
+    path:'/goParams/:newsID(\\d+)/:newsTitle',
+    redirect:'/params/:newsID(\\d+)/:newsTitle'
+  },
+  // 404页面
+  {
+    // 注意此处path
+    path:'*',
+    component:Error
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode:'history' // 默认为hash,history去掉“#”,更好看,但部署可能会有坑
 })
 
 export default router

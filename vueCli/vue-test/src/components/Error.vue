@@ -14,20 +14,11 @@
 
 <script>
 export default {
-  name: 'test1',
+  name: 'Error',
   data(){
       return{
-          msg:'test1 is here'
+          msg:'Error 404'
       }
-  },
-//   在模板中配置钩子函数，也可以在index.js中配置
-  beforeRouteEnter:(to,from,next) =>{
-      console.log("entering");
-      next();
-  },
-  beforeRouteLeave:(to,from,next) =>{
-      console.log("leaving");
-      next();
   }
 }
 </script>
