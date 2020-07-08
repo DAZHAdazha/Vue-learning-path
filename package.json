@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "vue-router": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-router": "^4.4.6"
   }
 }
